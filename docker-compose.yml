@@ -1,0 +1,19 @@
+services:
+  gmail-mcp:
+    build: .
+    container_name: gmail-mcp
+    restart: unless-stopped
+    environment:
+      - MCP_CONFIG_DIR=/config
+      - MCP_PROXY_API_KEY=${MCP_PROXY_API_KEY:-}
+    volumes:
+      - ./config:/config:ro
+    ports:
+      - "127.0.0.1:${GMAIL_MCP_PORT:-8787}:8080"
+    command: >
+      sh -lc "mcp-proxy --port 8080 ${MCP_PROXY_API_KEY:+--apiKey $MCP_PROXY_API_KEY} -- gmail-mcp"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
