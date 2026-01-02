@@ -11,7 +11,7 @@ help:
 # Check that .env file exists
 check-env:
 	@if [ ! -f .env ]; then \
-		echo "Error: .env not found at .env (copy .env.example)."; \
+		echo "Error: .env not found at .env (copy .env.example)." >&2; \
 		exit 1; \
 	fi
 
