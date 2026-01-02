@@ -5,13 +5,13 @@ help:
 	@echo "Available targets:"
 	@echo "  help    - Show this help message"
 	@echo "  build   - Build the Docker image"
-	@echo "  pull    - Update base images and rebuild"
+	@echo "  pull    - Update base images, rebuild, and start services"
 	@echo "  update  - Alias for pull"
 
 # Check that .env file exists
 check-env:
 	@if [ ! -f .env ]; then \
-		echo "Error: .env not found. Copy .env.example to .env first."; \
+		echo "Error: .env not found at .env (copy .env.example)."; \
 		exit 1; \
 	fi
 
